@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1">Assignment-1A</p>
+<p class="p2"><br></p>
+<p class="p1">///Server</p>
+<p class="p2"><br></p>
+<p class="p1">import java.io.*;</p>
+<p class="p1">import java.net.*;</p>
+<p class="p2"><br></p>
+<p class="p1">public class Server<span class="Apple-converted-space"> </span></p>
+<p class="p1">{</p>
+<p class="p1"><span class="Apple-tab-span">	</span>public static void main(String[] args)</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>try</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>ServerSocket ss=new ServerSocket(6666);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Socket s=ss.accept();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>DataInputStream dis=new DataInputStream(s.getInputStream());</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>String<span class="Apple-tab-span">	</span>str=(String)dis.readUTF();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("message= "+str);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>ss.close();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>catch(Exception e)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println(e);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">//Client<span class="Apple-converted-space"> </span></p>
+<p class="p1">import java.io.*;</p>
+<p class="p1">import java.net.*;</p>
+<p class="p2"><br></p>
+<p class="p1">public class Client<span class="Apple-converted-space"> </span></p>
+<p class="p1">{</p>
+<p class="p1"><span class="Apple-tab-span">	</span>public static void main(String[] args)<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>try</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{<span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Socket s=new Socket("localhost",6666);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>DataOutputStream dout=new DataOutputStream(s.getOutputStream());</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>dout.writeUTF("Client Message");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>dout.flush();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>dout.close();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>s.close();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>catch(Exception e)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println(e);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">Assignment 1-B</p>
+<p class="p2"><br></p>
+<p class="p1">//addRemote</p>
+<p class="p1">import java.rmi.*;</p>
+<p class="p1">import java.rmi.server.*;</p>
+<p class="p2"><br></p>
+<p class="p1">public class AddRemote extends UnicastRemoteObject implements Add</p>
+<p class="p1">{</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>AddRemote()throws RemoteException{</p>
+<p class="p1"><span class="Apple-tab-span">	</span>super();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">public int add(int x,int y){return x+y;}</p>
+<p class="p2"><br></p>
+<p class="p1">}</p>
+<p class="p1">//add</p>
+<p class="p1">import java.rmi.*;</p>
+<p class="p2"><br></p>
+<p class="p1">public interface Add extends Remote</p>
+<p class="p1">{</p>
+<p class="p1"><span class="Apple-tab-span">	</span>public int add(int x,int y)throws RemoteException;</p>
+<p class="p1">}</p>
+<p class="p1">//client</p>
+<p class="p2"><br></p>
+<p class="p1">import java.util.Scanner;</p>
+<p class="p1">import java.rmi.*;</p>
+<p class="p2"><br></p>
+<p class="p1">public class Client</p>
+<p class="p1">{</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>public static void main(String args[])</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>try</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Add stub=(Add)Naming.lookup("rmi://localhost:5000/ab");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Scanner myObj = new Scanner(System.in);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Enter first number:");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int first = myObj.nextInt();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Enter second number:");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int second = myObj.nextInt();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Sum :");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println(stub.add(first,second));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>catch(Exception e)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println(e);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">//server</p>
+<p class="p1">import java.rmi.*;</p>
+<p class="p1">import java.rmi.registry.*;</p>
+<p class="p2"><br></p>
+<p class="p1">public class Server</p>
+<p class="p1">{</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>public static void main(String args[])</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>try</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Add stub=new AddRemote();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Naming.rebind("rmi://localhost:5000/ab",stub);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>catch(Exception e)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println(e);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">Assignment-4</p>
+<p class="p2"><br></p>
+<p class="p1">Bully algo</p>
+<p class="p2"><br></p>
+<p class="p1">import java.io.*;</p>
+<p class="p1">import java.util.Scanner;</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1">class Bully</p>
+<p class="p1">{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>static int n;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>static int pro[] = new int[100];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>static int sta[] = new int[100];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>static int co;</p>
+<p class="p2"><span class="Apple-converted-space">     </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>public static void main(String args[])throws IOException</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>System.out.println("Enter the number of process");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Scanner in = new Scanner(System.in);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>n = in.nextInt();</p>
+<p class="p2"><span class="Apple-converted-space">         </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>int i,j,k,l,m;</p>
+<p class="p2"><span class="Apple-converted-space">         </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>for(i=0;i&lt;n;i++)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>System.out.println("For process "+(i+1)+":");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>System.out.println("Status:");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>sta[i]=in.nextInt();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>System.out.println("Priority");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pro[i] = in.nextInt();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">         </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>System.out.println("Which process will initiate election?");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>int ele = in.nextInt();</p>
+<p class="p2"><span class="Apple-converted-space">         </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>elect(ele);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>System.out.println("Final coordinator is "+co);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">     </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>static void elect(int ele)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ele = ele-1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>co = ele+1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>for(int i=0;i&lt;n;i++)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(pro[ele]&lt;pro[i])</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>System.out.println("Election message is sent from "+(ele+1)+" to "+(i+1));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if(sta[i]==1)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>elect(i+1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">Ring Algo</p>
+<p class="p2"><br></p>
+<p class="p1">import java.util.Scanner;</p>
+<p class="p1">class Process<span class="Apple-converted-space"> </span></p>
+<p class="p1">{</p>
+<p class="p1"><span class="Apple-tab-span">	</span>int processId;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>boolean active;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>public Process(int processId)<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>this.processId = processId;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>active = true;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">public class Ring</p>
+<p class="p1">{</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>private Scanner consoleInput;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>private Process[] process;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>private int NosOfProcess;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>public Ring()<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("\n\t\t==:Ring Coordinator Election Algorithm:==\n");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>consoleInput = new Scanner(System.in);</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>// Initialization</p>
+<p class="p1"><span class="Apple-tab-span">	</span>public void getInput()</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Enter number of process in ring: ");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>NosOfProcess = consoleInput.nextInt();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>process = new Process[NosOfProcess];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>for (int i = 0; i &lt; NosOfProcess; i++)<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.print("Enter Process ID of p" + i + ": ");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int pid = consoleInput.nextInt();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>initializeProcess(i, pid);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>sortProcess();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>putOutput();</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>private void initializeProcess(int i, int pid)<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>process[i] = new Process(pid);</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>// Conducting Election</p>
+<p class="p1"><span class="Apple-tab-span">	</span>public void conductElection()<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>try</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Thread.sleep(2000);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}catch(Exception e )</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println(e);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("process "+ process[getMax()].processId +" Fail");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>process[NosOfProcess-1].active = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>while(true)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.print("Conduct Election?\nyes or exit: ");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>String choice = consoleInput.next();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if("yes".equals(choice) || "Yes".equals(choice) || "y".equals(choice) || "Y".equals(choice))</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Election initiated by: ");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int initiatorProcess = consoleInput.nextInt();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>for(int i = 0; i&lt; NosOfProcess; i++)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(process[i].processId == initiatorProcess)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>initiatorProcess = i;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>break;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int prev = initiatorProcess;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int next = prev+1;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>// Message passing around the ring</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>while(true)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(process[next].active)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Process "+ process[prev].processId +" pass message to process "+process[next].processId );</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>prev = next;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>next = (next+1) % NosOfProcess;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(next == initiatorProcess)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>break;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Process "+ process[getMax()].processId +" becomes coordinator");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>else<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.exit(0); <span class="Apple-converted-space">           </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>public void putOutput()</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.println("Processes in the ring: ");<span class="Apple-converted-space">   </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>for(int i = 0; i &lt; NosOfProcess; i++)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.print(process[i].processId +", active: "+ process[i].active);</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(i == getMax())</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.print(", Coordinator\n");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>else</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>System.out.print("\n");</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>// Sorting Logic</p>
+<p class="p1"><span class="Apple-tab-span">	</span>private void sortProcess()</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>for (int i = 0; i &lt; NosOfProcess - 1; i++)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>for (int j = 0; j &lt; (NosOfProcess - i) -1; j++)<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if (process[j].processId &gt; process[j + 1].processId)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int temp = process[j].processId;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>process[j].processId = process[j + 1].processId;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>process[j + 1].processId = temp;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>// Get process with max id</p>
+<p class="p1"><span class="Apple-tab-span">	</span>private int getMax()</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>int max = 0, indexOfMax = 0;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>for(int i = 0; i &lt; NosOfProcess; i++)</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>if(process[i].active &amp;&amp; max &lt;= process[i].processId )<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>max = process[i].processId;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>indexOfMax = i;</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>}</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>return indexOfMax;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>public static void main(String arg[])<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Ring Ring = new Ring();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Ring.getInput();</p>
+<p class="p1"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Ring.conductElection();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-tab-span">	</span>}</p>
+<p class="p1">}<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+</body>
+</html>
